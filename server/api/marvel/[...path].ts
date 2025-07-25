@@ -1,4 +1,4 @@
-import md5 from 'crypto-js/md5'
+import CryptoJS from 'crypto-js'
 import type { H3Event } from 'h3'
 
 export default defineEventHandler(async (event: H3Event) => {
@@ -18,7 +18,7 @@ export default defineEventHandler(async (event: H3Event) => {
 
     if (!publicKey || !privateKey)  throw new Error('Missing Marvel API keys in runtime config')
 
-    const hash = md5(ts + privateKey + publicKey).toString()
+    const hash = CryptoJS.MD5(ts + privateKey + publicKey).toString()
 
     const params = new URLSearchParams(url.search)
     params.set('ts', ts)
