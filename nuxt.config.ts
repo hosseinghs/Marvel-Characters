@@ -4,10 +4,10 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxt/eslint', '@nuxt/image', '@nuxtjs/tailwindcss'],
   runtimeConfig: {
-    marvelPrivateApiKey: process.env.NUXT_MARVEL_PRIVATE_API_KEY,
+    marvelPrivateApiKey: '',
     public: {
-      apiUrl: process.env.NUXT_MARVEl_API_URL,
-      marvelPublicApiKey: process.env.NUXT_MARVEL_PUBLIC_API_KEY,
+      apiUrl: '',
+      marvelPublicApiKey: '',
     }
   }
 })
