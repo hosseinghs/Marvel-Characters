@@ -27,6 +27,14 @@ export default defineEventHandler(async (event: H3Event) => {
 
     const finalUrl = `https://gateway.marvel.com/v1/public/${marvelPath}?${params.toString()}`
 
+    console.log('=== MARVEL REQUEST DEBUG ===')
+    console.log('ts:', ts)
+    console.log('publicKey:', publicKey)
+    console.log('privateKey:', privateKey ? 'YES' : 'MISSING')
+    console.log('hash:', hash)
+    console.log('Final URL:', finalUrl)
+
+
     const data = await $fetch(finalUrl).catch(err => {
       console.error('Marvel API fetch failed:', err?.response || err)
       throw createError({
