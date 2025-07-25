@@ -1,5 +1,5 @@
 <template>
-  <div class="card border rounded-lg p-4">
+  <div class="card border rounded-lg p-4 cursor-pointer">
     <div class="character-img">
       <NuxtImg
         alt="thor"
