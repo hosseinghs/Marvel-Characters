@@ -27,13 +27,7 @@ export default defineEventHandler(async (event: H3Event) => {
 
     const finalUrl = `https://gateway.marvel.com/v1/public/${marvelPath}?${params.toString()}`
 
-    const data = await $fetch(finalUrl, {
-      headers: {
-        // Remove or override Referer and User-Agent to look like backend
-        referer: '',
-        'user-agent': 'node-fetch',
-      }
-    }).catch(err => {
+    const data = await $fetch(finalUrl).catch(err => {
       console.error('Marvel API fetch failed:', err?.response || err)
       throw createError({
         statusCode: err?.response?.status || 500,
