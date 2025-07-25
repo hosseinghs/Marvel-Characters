@@ -1,8 +1,11 @@
 <script setup lang="ts">
 const currentPage = ref(1)
-// const { data, error, pending } = await useFetch('/api/marvel/characters?limit=10', {
-//     server: false
-// })
+const { data, error, pending } = await useFetch('/api/marvel/characters?limit=10', {
+    server: false
+})
+console.log(data);
+console.log(data.value);
+
 
 </script>
 
