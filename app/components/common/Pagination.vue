@@ -1,9 +1,18 @@
 <template>
-  <div class="flex items-center justify-center" aria-label="Pagination">
-    <ul class="inline-flex -space-x-px">
+  <div class="flex items-center justify-center -mx-2" aria-label="Pagination">
+    <ul class="flex items-center bg-[#23262b] border border-gray-600 rounded-lg px-4 py-2 gap-1 overflow-x-auto whitespace-nowrap scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent px-2">
       <li>
         <button
-          class="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 disabled:opacity-50"
+          class="text-gray-400 hover:text-white px-2 py-1 disabled:opacity-40"
+          :disabled="currentPage === 1"
+          @click="currentPage = 1"
+        >
+          «
+        </button>
+      </li>
+      <li>
+        <button
+          class="text-gray-400 hover:text-white px-2 py-1 disabled:opacity-40"
           :disabled="currentPage === 1"
           @click="currentPage--"
         >
@@ -13,26 +22,37 @@
       <li v-for="page in pagesToShow" :key="'page-' + page">
         <button
           v-if="typeof page === 'number'"
-          class="px-3 py-2 leading-tight border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
-          :class="page === currentPage ? 'bg-blue-500 text-white' : 'bg-white text-gray-500'"
+          class="mx-1 w-8 h-8 flex items-center justify-center text-base transition"
+          :class="page === currentPage
+            ? 'bg-red-600 text-white rounded-full font-bold shadow'
+            : 'text-gray-400 hover:text-white'"
           @click="currentPage = page"
         >
           {{ page }}
         </button>
         <span
           v-else
-          class="px-3 py-2 leading-tight border border-gray-300 bg-white text-gray-500 select-none"
+          class="mx-1 w-8 h-8 flex items-center justify-center text-gray-500 select-none"
         >
           {{ page }}
         </span>
       </li>
       <li>
         <button
-          class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 disabled:opacity-50"
+          class="text-gray-400 hover:text-white px-2 py-1 disabled:opacity-40"
           :disabled="currentPage === totalPages"
           @click="currentPage++"
         >
           >
+        </button>
+      </li>
+      <li>
+        <button
+          class="text-gray-400 hover:text-white px-2 py-1 disabled:opacity-40"
+          :disabled="currentPage === totalPages"
+          @click="currentPage = totalPages"
+        >
+          »
         </button>
       </li>
     </ul>
