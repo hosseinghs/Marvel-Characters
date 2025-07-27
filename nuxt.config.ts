@@ -9,5 +9,12 @@ export default defineNuxtConfig({
       apiUrl: process.env.NUXT_MARVEL_API_URL,
       marvelPublicApiKey: process.env.NUXT_MARVEL_PUBLIC_API_KEY,
     }
-  }
+  },
+  routeRules: {
+    '/': { isr: true },
+    '/character/**': {
+      ssr: true,
+      prerender: true
+    },
+  },
 })
