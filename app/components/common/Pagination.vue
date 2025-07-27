@@ -4,7 +4,7 @@
       <li>
         <button
           class="text-gray-400 hover:text-white px-2 py-1 disabled:opacity-40"
-          :disabled="currentPage === 1"
+          :disabled="currentPage === 1 || disabled"
           @click="currentPage = 1"
         >
           «
@@ -13,7 +13,7 @@
       <li>
         <button
           class="text-gray-400 hover:text-white px-2 py-1 disabled:opacity-40"
-          :disabled="currentPage === 1"
+          :disabled="currentPage === 1 || disabled"
           @click="currentPage--"
         >
           <
@@ -22,6 +22,7 @@
       <li v-for="page in pagesToShow" :key="'page-' + page">
         <button
           v-if="typeof page === 'number'"
+          :disabled="disabled"
           class="mx-1 w-8 h-8 flex items-center justify-center text-base transition"
           :class="page === currentPage
             ? 'bg-red-600 text-white rounded-full font-bold shadow'
@@ -40,7 +41,7 @@
       <li>
         <button
           class="text-gray-400 hover:text-white px-2 py-1 disabled:opacity-40"
-          :disabled="currentPage === totalPages"
+          :disabled="currentPage === totalPages || disabled"
           @click="currentPage++"
         >
           >
@@ -49,7 +50,7 @@
       <li>
         <button
           class="text-gray-400 hover:text-white px-2 py-1 disabled:opacity-40"
-          :disabled="currentPage === totalPages"
+          :disabled="currentPage === totalPages  || disabled"
           @click="currentPage = totalPages"
         >
           »
@@ -66,6 +67,7 @@ interface IProps {
     justify?: 'center' | 'start' | 'end'
     totalPages: number
     maxVisible: number
+    disabled?: boolean
 }
 
 const props = withDefaults(defineProps<IProps>(), {
